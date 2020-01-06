@@ -4,7 +4,7 @@ import com.xdkj.outsources.entity.Users;
 
 /**
  * @Author JCX
- * @create 2020-01-06 14:10
+ * @create 2020-01-06 17:09
  */
 public interface UsersMapper {
     int deleteByPrimaryKey(Integer userId);

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * @Author JCX
- * @create 2020-01-06 14:10
+ * @create 2020-01-06 17:09
  */
 public class Users implements Serializable {
     private Integer userId;
@@ -16,6 +16,8 @@ public class Users implements Serializable {
     private String userPassword;
 
     private Integer userRole;
+
+    private String userImg;
 
     private static final long serialVersionUID = 1L;
 
@@ -59,6 +61,14 @@ public class Users implements Serializable {
         this.userRole = userRole;
     }
 
+    public String getUserImg() {
+        return userImg;
+    }
+
+    public void setUserImg(String userImg) {
+        this.userImg = userImg;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -70,6 +80,7 @@ public class Users implements Serializable {
         sb.append(", userEmail=").append(userEmail);
         sb.append(", userPassword=").append(userPassword);
         sb.append(", userRole=").append(userRole);
+        sb.append(", userImg=").append(userImg);
         sb.append("]");
         return sb.toString();
     }

@@ -5,12 +5,13 @@ import javax.annotation.Resource;
 import com.xdkj.outsources.dao.UsersMapper;
 import com.xdkj.outsources.entity.Users;
 import com.xdkj.outsources.service.UsersService;
+
 /**
  * @Author JCX
  * @create 2020-01-06 14:10
  */
 @Service
-public class UsersServiceImpl implements UsersService{
+public class UsersServiceImpl implements UsersService {
 
     @Resource
     private UsersMapper usersMapper;
@@ -46,3 +47,4 @@ public class UsersServiceImpl implements UsersService{
     }
 
 }
+
