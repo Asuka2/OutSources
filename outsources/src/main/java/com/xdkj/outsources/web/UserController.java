@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @create 2020-01-06 16:30
  */
 @RestController
-@RequestMapping("/login")
-public class LoginController {
+@RequestMapping("/user")
+public class UserController {
 }
