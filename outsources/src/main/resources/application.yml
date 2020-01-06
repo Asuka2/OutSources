@@ -1,0 +1,19 @@
+#关闭缓存，即时刷新
+spring:
+  thymeleaf:
+    cache: true
+  #热部署生效
+  devtools:
+    restart:
+      enabled: true
+      #设置重启目录（监听需要restart的文件）
+      additional-paths: src/main/java
+  datasource:
+    url: jdbc:mysql://localhost:3306/outsources?characterEncoding=utf-8&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+mybatis:
+  config-location: mybatis-config.xml
+  mapper-locations: /mapper/**.xml
+  type-aliases-package: com.xdkj.outsources.entity
