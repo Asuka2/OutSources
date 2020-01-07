@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 /**
  * @Author JCX
- * @create 2020-01-07 10:09
+ * @create 2020-01-07 10:18
  */
 public class Project implements Serializable {
     private Integer projectId;
 
     private String projectName;
 
-    private String projiectClass;
+    private String projectClass;
 
     private Double projectBudget;
 
@@ -21,7 +21,7 @@ public class Project implements Serializable {
 
     private Integer projectPublisher;
 
-    private Integer projiectCoder;
+    private Integer projectCoder;
 
     private static final long serialVersionUID = 1L;
 
@@ -41,12 +41,12 @@ public class Project implements Serializable {
         this.projectName = projectName;
     }
 
-    public String getProjiectClass() {
-        return projiectClass;
+    public String getProjectClass() {
+        return projectClass;
     }
 
-    public void setProjiectClass(String projiectClass) {
-        this.projiectClass = projiectClass;
+    public void setProjectClass(String projectClass) {
+        this.projectClass = projectClass;
     }
 
     public Double getProjectBudget() {
@@ -81,12 +81,12 @@ public class Project implements Serializable {
         this.projectPublisher = projectPublisher;
     }
 
-    public Integer getProjiectCoder() {
-        return projiectCoder;
+    public Integer getProjectCoder() {
+        return projectCoder;
     }
 
-    public void setProjiectCoder(Integer projiectCoder) {
-        this.projiectCoder = projiectCoder;
+    public void setProjectCoder(Integer projectCoder) {
+        this.projectCoder = projectCoder;
     }
 
     @Override
@@ -97,12 +97,12 @@ public class Project implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", projectId=").append(projectId);
         sb.append(", projectName=").append(projectName);
-        sb.append(", projiectClass=").append(projiectClass);
+        sb.append(", projectClass=").append(projectClass);
         sb.append(", projectBudget=").append(projectBudget);
         sb.append(", projectIntroduce=").append(projectIntroduce);
         sb.append(", projectFile=").append(projectFile);
         sb.append(", projectPublisher=").append(projectPublisher);
-        sb.append(", projiectCoder=").append(projiectCoder);
+        sb.append(", projectCoder=").append(projectCoder);
         sb.append("]");
         return sb.toString();
     }

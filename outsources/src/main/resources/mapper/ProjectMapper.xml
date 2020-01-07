@@ -6,17 +6,17 @@
     <!--@Table project-->
     <id column="project_id" jdbcType="INTEGER" property="projectId" />
     <result column="project_name" jdbcType="VARCHAR" property="projectName" />
-    <result column="projiect_class" jdbcType="VARCHAR" property="projiectClass" />
+    <result column="project_class" jdbcType="VARCHAR" property="projectClass" />
     <result column="project_budget" jdbcType="DOUBLE" property="projectBudget" />
     <result column="project_introduce" jdbcType="VARCHAR" property="projectIntroduce" />
     <result column="project_file" jdbcType="VARCHAR" property="projectFile" />
     <result column="project_publisher" jdbcType="INTEGER" property="projectPublisher" />
-    <result column="projiect_coder" jdbcType="INTEGER" property="projiectCoder" />
+    <result column="project_coder" jdbcType="INTEGER" property="projectCoder" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    project_id, project_name, projiect_class, project_budget, project_introduce, project_file, 
-    project_publisher, projiect_coder
+    project_id, project_name, project_class, project_budget, project_introduce, project_file, 
+    project_publisher, project_coder
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -32,12 +32,12 @@
   </delete>
   <insert id="insert" keyColumn="project_id" keyProperty="projectId" parameterType="com.xdkj.outsources.entity.Project" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into project (project_name, projiect_class, project_budget, 
+    insert into project (project_name, project_class, project_budget, 
       project_introduce, project_file, project_publisher, 
-      projiect_coder)
-    values (#{projectName,jdbcType=VARCHAR}, #{projiectClass,jdbcType=VARCHAR}, #{projectBudget,jdbcType=DOUBLE}, 
+      project_coder)
+    values (#{projectName,jdbcType=VARCHAR}, #{projectClass,jdbcType=VARCHAR}, #{projectBudget,jdbcType=DOUBLE}, 
       #{projectIntroduce,jdbcType=VARCHAR}, #{projectFile,jdbcType=VARCHAR}, #{projectPublisher,jdbcType=INTEGER}, 
-      #{projiectCoder,jdbcType=INTEGER})
+      #{projectCoder,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="project_id" keyProperty="projectId" parameterType="com.xdkj.outsources.entity.Project" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -46,8 +46,8 @@
       <if test="projectName != null">
         project_name,
       </if>
-      <if test="projiectClass != null">
-        projiect_class,
+      <if test="projectClass != null">
+        project_class,
       </if>
       <if test="projectBudget != null">
         project_budget,
@@ -61,16 +61,16 @@
       <if test="projectPublisher != null">
         project_publisher,
       </if>
-      <if test="projiectCoder != null">
-        projiect_coder,
+      <if test="projectCoder != null">
+        project_coder,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="projectName != null">
         #{projectName,jdbcType=VARCHAR},
       </if>
-      <if test="projiectClass != null">
-        #{projiectClass,jdbcType=VARCHAR},
+      <if test="projectClass != null">
+        #{projectClass,jdbcType=VARCHAR},
       </if>
       <if test="projectBudget != null">
         #{projectBudget,jdbcType=DOUBLE},
@@ -84,8 +84,8 @@
       <if test="projectPublisher != null">
         #{projectPublisher,jdbcType=INTEGER},
       </if>
-      <if test="projiectCoder != null">
-        #{projiectCoder,jdbcType=INTEGER},
+      <if test="projectCoder != null">
+        #{projectCoder,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -96,8 +96,8 @@
       <if test="projectName != null">
         project_name = #{projectName,jdbcType=VARCHAR},
       </if>
-      <if test="projiectClass != null">
-        projiect_class = #{projiectClass,jdbcType=VARCHAR},
+      <if test="projectClass != null">
+        project_class = #{projectClass,jdbcType=VARCHAR},
       </if>
       <if test="projectBudget != null">
         project_budget = #{projectBudget,jdbcType=DOUBLE},
@@ -111,8 +111,8 @@
       <if test="projectPublisher != null">
         project_publisher = #{projectPublisher,jdbcType=INTEGER},
       </if>
-      <if test="projiectCoder != null">
-        projiect_coder = #{projiectCoder,jdbcType=INTEGER},
+      <if test="projectCoder != null">
+        project_coder = #{projectCoder,jdbcType=INTEGER},
       </if>
     </set>
     where project_id = #{projectId,jdbcType=INTEGER}
@@ -121,12 +121,12 @@
     <!--@mbg.generated-->
     update project
     set project_name = #{projectName,jdbcType=VARCHAR},
-      projiect_class = #{projiectClass,jdbcType=VARCHAR},
+      project_class = #{projectClass,jdbcType=VARCHAR},
       project_budget = #{projectBudget,jdbcType=DOUBLE},
       project_introduce = #{projectIntroduce,jdbcType=VARCHAR},
       project_file = #{projectFile,jdbcType=VARCHAR},
       project_publisher = #{projectPublisher,jdbcType=INTEGER},
-      projiect_coder = #{projiectCoder,jdbcType=INTEGER}
+      project_coder = #{projectCoder,jdbcType=INTEGER}
     where project_id = #{projectId,jdbcType=INTEGER}
   </update>
 </mapper>
