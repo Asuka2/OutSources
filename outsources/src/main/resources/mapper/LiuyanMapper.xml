@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xdkj.outsources.dao.LiuyanMapper">
+  <resultMap id="BaseResultMap" type="com.xdkj.outsources.entity.Liuyan">
+    <!--@mbg.generated-->
+    <!--@Table liuyan-->
+    <id column="ly_id" jdbcType="INTEGER" property="lyId" />
+    <result column="ly_text" jdbcType="VARCHAR" property="lyText" />
+    <result column="ly_person" jdbcType="INTEGER" property="lyPerson" />
+    <result column="ly_pyq" jdbcType="INTEGER" property="lyPyq" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    ly_id, ly_text, ly_person, ly_pyq
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from liuyan
+    where ly_id = #{lyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from liuyan
+    where ly_id = #{lyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ly_id" keyProperty="lyId" parameterType="com.xdkj.outsources.entity.Liuyan" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into liuyan (ly_text, ly_person, ly_pyq
+      )
+    values (#{lyText,jdbcType=VARCHAR}, #{lyPerson,jdbcType=INTEGER}, #{lyPyq,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="ly_id" keyProperty="lyId" parameterType="com.xdkj.outsources.entity.Liuyan" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into liuyan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="lyText != null">
+        ly_text,
+      </if>
+      <if test="lyPerson != null">
+        ly_person,
+      </if>
+      <if test="lyPyq != null">
+        ly_pyq,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="lyText != null">
+        #{lyText,jdbcType=VARCHAR},
+      </if>
+      <if test="lyPerson != null">
+        #{lyPerson,jdbcType=INTEGER},
+      </if>
+      <if test="lyPyq != null">
+        #{lyPyq,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xdkj.outsources.entity.Liuyan">
+    <!--@mbg.generated-->
+    update liuyan
+    <set>
+      <if test="lyText != null">
+        ly_text = #{lyText,jdbcType=VARCHAR},
+      </if>
+      <if test="lyPerson != null">
+        ly_person = #{lyPerson,jdbcType=INTEGER},
+      </if>
+      <if test="lyPyq != null">
+        ly_pyq = #{lyPyq,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ly_id = #{lyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xdkj.outsources.entity.Liuyan">
+    <!--@mbg.generated-->
+    update liuyan
+    set ly_text = #{lyText,jdbcType=VARCHAR},
+      ly_person = #{lyPerson,jdbcType=INTEGER},
+      ly_pyq = #{lyPyq,jdbcType=INTEGER}
+    where ly_id = #{lyId,jdbcType=INTEGER}
+  </update>
+</mapper>
