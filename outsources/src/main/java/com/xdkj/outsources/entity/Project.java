@@ -4,12 +4,14 @@ import java.io.Serializable;
 
 /**
  * @Author JCX
- * @create 2020-01-06 14:48
+ * @create 2020-01-07 10:09
  */
 public class Project implements Serializable {
     private Integer projectId;
 
     private String projectName;
+
+    private String projiectClass;
 
     private Double projectBudget;
 
@@ -37,6 +39,14 @@ public class Project implements Serializable {
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
+    }
+
+    public String getProjiectClass() {
+        return projiectClass;
+    }
+
+    public void setProjiectClass(String projiectClass) {
+        this.projiectClass = projiectClass;
     }
 
     public Double getProjectBudget() {
@@ -87,6 +97,7 @@ public class Project implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", projectId=").append(projectId);
         sb.append(", projectName=").append(projectName);
+        sb.append(", projiectClass=").append(projiectClass);
         sb.append(", projectBudget=").append(projectBudget);
         sb.append(", projectIntroduce=").append(projectIntroduce);
         sb.append(", projectFile=").append(projectFile);

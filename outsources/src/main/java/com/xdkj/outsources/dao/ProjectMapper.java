@@ -4,7 +4,7 @@ import com.xdkj.outsources.entity.Project;
 
 /**
  * @Author JCX
- * @create 2020-01-06 14:48
+ * @create 2020-01-07 10:09
  */
 public interface ProjectMapper {
     int deleteByPrimaryKey(Integer projectId);

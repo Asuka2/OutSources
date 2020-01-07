@@ -5,12 +5,13 @@ import javax.annotation.Resource;
 import com.xdkj.outsources.entity.Project;
 import com.xdkj.outsources.dao.ProjectMapper;
 import com.xdkj.outsources.service.ProjectService;
+
 /**
  * @Author JCX
  * @create 2020-01-06 14:48
  */
 @Service
-public class ProjectServiceImpl implements ProjectService{
+public class ProjectServiceImpl implements ProjectService {
 
     @Resource
     private ProjectMapper projectMapper;
@@ -46,3 +47,4 @@ public class ProjectServiceImpl implements ProjectService{
     }
 
 }
+

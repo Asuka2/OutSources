@@ -6,6 +6,7 @@
     <!--@Table project-->
     <id column="project_id" jdbcType="INTEGER" property="projectId" />
     <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="projiect_class" jdbcType="VARCHAR" property="projiectClass" />
     <result column="project_budget" jdbcType="DOUBLE" property="projectBudget" />
     <result column="project_introduce" jdbcType="VARCHAR" property="projectIntroduce" />
     <result column="project_file" jdbcType="VARCHAR" property="projectFile" />
@@ -14,8 +15,8 @@
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    project_id, project_name, project_budget, project_introduce, project_file, project_publisher, 
-    projiect_coder
+    project_id, project_name, projiect_class, project_budget, project_introduce, project_file, 
+    project_publisher, projiect_coder
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -31,12 +32,12 @@
   </delete>
   <insert id="insert" keyColumn="project_id" keyProperty="projectId" parameterType="com.xdkj.outsources.entity.Project" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into project (project_name, project_budget, project_introduce, 
-      project_file, project_publisher, projiect_coder
-      )
-    values (#{projectName,jdbcType=VARCHAR}, #{projectBudget,jdbcType=DOUBLE}, #{projectIntroduce,jdbcType=VARCHAR}, 
-      #{projectFile,jdbcType=VARCHAR}, #{projectPublisher,jdbcType=INTEGER}, #{projiectCoder,jdbcType=INTEGER}
-      )
+    insert into project (project_name, projiect_class, project_budget, 
+      project_introduce, project_file, project_publisher, 
+      projiect_coder)
+    values (#{projectName,jdbcType=VARCHAR}, #{projiectClass,jdbcType=VARCHAR}, #{projectBudget,jdbcType=DOUBLE}, 
+      #{projectIntroduce,jdbcType=VARCHAR}, #{projectFile,jdbcType=VARCHAR}, #{projectPublisher,jdbcType=INTEGER}, 
+      #{projiectCoder,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="project_id" keyProperty="projectId" parameterType="com.xdkj.outsources.entity.Project" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -44,6 +45,9 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="projectName != null">
         project_name,
+      </if>
+      <if test="projiectClass != null">
+        projiect_class,
       </if>
       <if test="projectBudget != null">
         project_budget,
@@ -64,6 +68,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="projectName != null">
         #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projiectClass != null">
+        #{projiectClass,jdbcType=VARCHAR},
       </if>
       <if test="projectBudget != null">
         #{projectBudget,jdbcType=DOUBLE},
@@ -89,6 +96,9 @@
       <if test="projectName != null">
         project_name = #{projectName,jdbcType=VARCHAR},
       </if>
+      <if test="projiectClass != null">
+        projiect_class = #{projiectClass,jdbcType=VARCHAR},
+      </if>
       <if test="projectBudget != null">
         project_budget = #{projectBudget,jdbcType=DOUBLE},
       </if>
@@ -111,6 +121,7 @@
     <!--@mbg.generated-->
     update project
     set project_name = #{projectName,jdbcType=VARCHAR},
+      projiect_class = #{projiectClass,jdbcType=VARCHAR},
       project_budget = #{projectBudget,jdbcType=DOUBLE},
       project_introduce = #{projectIntroduce,jdbcType=VARCHAR},
       project_file = #{projectFile,jdbcType=VARCHAR},
