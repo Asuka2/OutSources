@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xdkj.outsources.dao.PyqMapper">
+  <resultMap id="BaseResultMap" type="com.xdkj.outsources.entity.Pyq">
+    <!--@mbg.generated-->
+    <!--@Table pyq-->
+    <id column="pyq_id" jdbcType="INTEGER" property="pyqId" />
+    <result column="pyd_text" jdbcType="VARCHAR" property="pydText" />
+    <result column="pyq_person" jdbcType="INTEGER" property="pyqPerson" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    pyq_id, pyd_text, pyq_person
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from pyq
+    where pyq_id = #{pyqId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from pyq
+    where pyq_id = #{pyqId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="pyq_id" keyProperty="pyqId" parameterType="com.xdkj.outsources.entity.Pyq" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into pyq (pyd_text, pyq_person)
+    values (#{pydText,jdbcType=VARCHAR}, #{pyqPerson,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="pyq_id" keyProperty="pyqId" parameterType="com.xdkj.outsources.entity.Pyq" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into pyq
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pydText != null">
+        pyd_text,
+      </if>
+      <if test="pyqPerson != null">
+        pyq_person,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pydText != null">
+        #{pydText,jdbcType=VARCHAR},
+      </if>
+      <if test="pyqPerson != null">
+        #{pyqPerson,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xdkj.outsources.entity.Pyq">
+    <!--@mbg.generated-->
+    update pyq
+    <set>
+      <if test="pydText != null">
+        pyd_text = #{pydText,jdbcType=VARCHAR},
+      </if>
+      <if test="pyqPerson != null">
+        pyq_person = #{pyqPerson,jdbcType=INTEGER},
+      </if>
+    </set>
+    where pyq_id = #{pyqId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xdkj.outsources.entity.Pyq">
+    <!--@mbg.generated-->
+    update pyq
+    set pyd_text = #{pydText,jdbcType=VARCHAR},
+      pyq_person = #{pyqPerson,jdbcType=INTEGER}
+    where pyq_id = #{pyqId,jdbcType=INTEGER}
+  </update>
+</mapper>
