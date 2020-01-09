@@ -1,11 +1,12 @@
 package com.xdkj.outsources.service;
 
 import com.xdkj.outsources.entity.Works;
-    /**
+
+/**
  * @Author JCX
  * @create 2020-01-06 14:49
  */
-public interface WorksService{
+public interface WorksService {
 
 
     int deleteByPrimaryKey(Integer worksId);
@@ -21,3 +22,4 @@ public interface WorksService{
     int updateByPrimaryKey(Works record);
 
 }
+

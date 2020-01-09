@@ -5,12 +5,13 @@ import javax.annotation.Resource;
 import com.xdkj.outsources.dao.ResumeMapper;
 import com.xdkj.outsources.entity.Resume;
 import com.xdkj.outsources.service.ResumeService;
+
 /**
  * @Author JCX
  * @create 2020-01-06 14:48
  */
 @Service
-public class ResumeServiceImpl implements ResumeService{
+public class ResumeServiceImpl implements ResumeService {
 
     @Resource
     private ResumeMapper resumeMapper;
@@ -46,3 +47,4 @@ public class ResumeServiceImpl implements ResumeService{
     }
 
 }
+

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * @Author JCX
- * @create 2020-01-06 14:49
+ * @create 2020-01-08 14:37
  */
 public class Works implements Serializable {
     private Integer worksId;
@@ -15,7 +15,7 @@ public class Works implements Serializable {
 
     private String worksKeyword;
 
-    private Integer worksHref;
+    private String worksHref;
 
     private Integer worksDuty;
 
@@ -57,11 +57,11 @@ public class Works implements Serializable {
         this.worksKeyword = worksKeyword;
     }
 
-    public Integer getWorksHref() {
+    public String getWorksHref() {
         return worksHref;
     }
 
-    public void setWorksHref(Integer worksHref) {
+    public void setWorksHref(String worksHref) {
         this.worksHref = worksHref;
     }
 

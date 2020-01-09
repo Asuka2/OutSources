@@ -4,7 +4,7 @@ import com.xdkj.outsources.entity.Resume;
 
 /**
  * @Author JCX
- * @create 2020-01-06 14:48
+ * @create 2020-01-08 14:38
  */
 public interface ResumeMapper {
     int deleteByPrimaryKey(Integer resumeId);

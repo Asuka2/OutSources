@@ -5,12 +5,13 @@ import javax.annotation.Resource;
 import com.xdkj.outsources.dao.WorksMapper;
 import com.xdkj.outsources.entity.Works;
 import com.xdkj.outsources.service.WorksService;
+
 /**
  * @Author JCX
  * @create 2020-01-06 14:49
  */
 @Service
-public class WorksServiceImpl implements WorksService{
+public class WorksServiceImpl implements WorksService {
 
     @Resource
     private WorksMapper worksMapper;
@@ -46,3 +47,4 @@ public class WorksServiceImpl implements WorksService{
     }
 
 }
+

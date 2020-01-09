@@ -8,7 +8,7 @@
     <result column="works_name" jdbcType="VARCHAR" property="worksName" />
     <result column="works_trade" jdbcType="VARCHAR" property="worksTrade" />
     <result column="works_keyword" jdbcType="VARCHAR" property="worksKeyword" />
-    <result column="works_href" jdbcType="INTEGER" property="worksHref" />
+    <result column="works_href" jdbcType="VARCHAR" property="worksHref" />
     <result column=" works_duty" jdbcType="INTEGER" property="worksDuty" />
     <result column="works_image" jdbcType="VARCHAR" property="worksImage" />
     <result column="works_person" jdbcType="INTEGER" property="worksPerson" />
@@ -36,7 +36,7 @@
       works_href, ` works_duty`, works_image, 
       works_person)
     values (#{worksName,jdbcType=VARCHAR}, #{worksTrade,jdbcType=VARCHAR}, #{worksKeyword,jdbcType=VARCHAR}, 
-      #{worksHref,jdbcType=INTEGER}, #{worksDuty,jdbcType=INTEGER}, #{worksImage,jdbcType=VARCHAR}, 
+      #{worksHref,jdbcType=VARCHAR}, #{worksDuty,jdbcType=INTEGER}, #{worksImage,jdbcType=VARCHAR}, 
       #{worksPerson,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="works_id" keyProperty="worksId" parameterType="com.xdkj.outsources.entity.Works" useGeneratedKeys="true">
@@ -76,7 +76,7 @@
         #{worksKeyword,jdbcType=VARCHAR},
       </if>
       <if test="worksHref != null">
-        #{worksHref,jdbcType=INTEGER},
+        #{worksHref,jdbcType=VARCHAR},
       </if>
       <if test="worksDuty != null">
         #{worksDuty,jdbcType=INTEGER},
@@ -103,7 +103,7 @@
         works_keyword = #{worksKeyword,jdbcType=VARCHAR},
       </if>
       <if test="worksHref != null">
-        works_href = #{worksHref,jdbcType=INTEGER},
+        works_href = #{worksHref,jdbcType=VARCHAR},
       </if>
       <if test="worksDuty != null">
         ` works_duty` = #{worksDuty,jdbcType=INTEGER},
@@ -123,7 +123,7 @@
     set works_name = #{worksName,jdbcType=VARCHAR},
       works_trade = #{worksTrade,jdbcType=VARCHAR},
       works_keyword = #{worksKeyword,jdbcType=VARCHAR},
-      works_href = #{worksHref,jdbcType=INTEGER},
+      works_href = #{worksHref,jdbcType=VARCHAR},
       ` works_duty` = #{worksDuty,jdbcType=INTEGER},
       works_image = #{worksImage,jdbcType=VARCHAR},
       works_person = #{worksPerson,jdbcType=INTEGER}

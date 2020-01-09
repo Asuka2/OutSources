@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * @Author JCX
- * @create 2020-01-06 14:48
+ * @create 2020-01-08 14:38
  */
 public class Resume implements Serializable {
     private Integer resumeId;
@@ -15,7 +15,7 @@ public class Resume implements Serializable {
 
     private String resumeSpecificwork;
 
-    private Integer resumeWorks;
+    private String resumeWorks;
 
     private String resumeIntroduce;
 
@@ -55,11 +55,11 @@ public class Resume implements Serializable {
         this.resumeSpecificwork = resumeSpecificwork;
     }
 
-    public Integer getResumeWorks() {
+    public String getResumeWorks() {
         return resumeWorks;
     }
 
-    public void setResumeWorks(Integer resumeWorks) {
+    public void setResumeWorks(String resumeWorks) {
         this.resumeWorks = resumeWorks;
     }
 

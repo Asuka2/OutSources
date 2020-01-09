@@ -1,12 +1,12 @@
 package com.xdkj.outsources.service;
 
 import com.xdkj.outsources.entity.Resume;
-    /**
+
+/**
  * @Author JCX
  * @create 2020-01-06 14:48
  */
-public interface ResumeService{
-
+public interface ResumeService {
 
     int deleteByPrimaryKey(Integer resumeId);
 
@@ -21,3 +21,4 @@ public interface ResumeService{
     int updateByPrimaryKey(Resume record);
 
 }
+

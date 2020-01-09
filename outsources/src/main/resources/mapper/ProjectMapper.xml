@@ -12,11 +12,13 @@
     <result column="project_file" jdbcType="VARCHAR" property="projectFile" />
     <result column="project_publisher" jdbcType="INTEGER" property="projectPublisher" />
     <result column="project_coder" jdbcType="INTEGER" property="projectCoder" />
+    <result column="project_status" jdbcType="INTEGER" property="projectStatus" />
+    <result column="project_skill" jdbcType="VARCHAR" property="projectSkill" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     project_id, project_name, project_class, project_budget, project_introduce, project_file, 
-    project_publisher, project_coder
+    project_publisher, project_coder, project_status, project_skill
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -34,10 +36,12 @@
     <!--@mbg.generated-->
     insert into project (project_name, project_class, project_budget, 
       project_introduce, project_file, project_publisher, 
-      project_coder)
+      project_coder, project_status, project_skill
+      )
     values (#{projectName,jdbcType=VARCHAR}, #{projectClass,jdbcType=VARCHAR}, #{projectBudget,jdbcType=DOUBLE}, 
       #{projectIntroduce,jdbcType=VARCHAR}, #{projectFile,jdbcType=VARCHAR}, #{projectPublisher,jdbcType=INTEGER}, 
-      #{projectCoder,jdbcType=INTEGER})
+      #{projectCoder,jdbcType=INTEGER}, #{projectStatus,jdbcType=INTEGER}, #{projectSkill,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" keyColumn="project_id" keyProperty="projectId" parameterType="com.xdkj.outsources.entity.Project" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -64,6 +68,12 @@
       <if test="projectCoder != null">
         project_coder,
       </if>
+      <if test="projectStatus != null">
+        project_status,
+      </if>
+      <if test="projectSkill != null">
+        project_skill,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="projectName != null">
@@ -86,6 +96,12 @@
       </if>
       <if test="projectCoder != null">
         #{projectCoder,jdbcType=INTEGER},
+      </if>
+      <if test="projectStatus != null">
+        #{projectStatus,jdbcType=INTEGER},
+      </if>
+      <if test="projectSkill != null">
+        #{projectSkill,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -114,6 +130,12 @@
       <if test="projectCoder != null">
         project_coder = #{projectCoder,jdbcType=INTEGER},
       </if>
+      <if test="projectStatus != null">
+        project_status = #{projectStatus,jdbcType=INTEGER},
+      </if>
+      <if test="projectSkill != null">
+        project_skill = #{projectSkill,jdbcType=VARCHAR},
+      </if>
     </set>
     where project_id = #{projectId,jdbcType=INTEGER}
   </update>
@@ -126,7 +148,10 @@
       project_introduce = #{projectIntroduce,jdbcType=VARCHAR},
       project_file = #{projectFile,jdbcType=VARCHAR},
       project_publisher = #{projectPublisher,jdbcType=INTEGER},
-      project_coder = #{projectCoder,jdbcType=INTEGER}
+      project_coder = #{projectCoder,jdbcType=INTEGER},
+      project_status = #{projectStatus,jdbcType=INTEGER},
+      project_skill = #{projectSkill,jdbcType=VARCHAR}
     where project_id = #{projectId,jdbcType=INTEGER}
   </update>
+
 </mapper>

@@ -8,7 +8,7 @@
     <result column="resume_workstatus" jdbcType="VARCHAR" property="resumeWorkstatus" />
     <result column="resume_workdirection" jdbcType="VARCHAR" property="resumeWorkdirection" />
     <result column="resume_specificwork" jdbcType="VARCHAR" property="resumeSpecificwork" />
-    <result column="resume_works" jdbcType="INTEGER" property="resumeWorks" />
+    <result column="resume_works" jdbcType="VARCHAR" property="resumeWorks" />
     <result column="resume_introduce" jdbcType="VARCHAR" property="resumeIntroduce" />
     <result column="resume_person" jdbcType="INTEGER" property="resumePerson" />
   </resultMap>
@@ -35,7 +35,7 @@
       resume_specificwork, resume_works, resume_introduce, 
       resume_person)
     values (#{resumeWorkstatus,jdbcType=VARCHAR}, #{resumeWorkdirection,jdbcType=VARCHAR}, 
-      #{resumeSpecificwork,jdbcType=VARCHAR}, #{resumeWorks,jdbcType=INTEGER}, #{resumeIntroduce,jdbcType=VARCHAR}, 
+      #{resumeSpecificwork,jdbcType=VARCHAR}, #{resumeWorks,jdbcType=VARCHAR}, #{resumeIntroduce,jdbcType=VARCHAR}, 
       #{resumePerson,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="resume_id" keyProperty="resumeId" parameterType="com.xdkj.outsources.entity.Resume" useGeneratedKeys="true">
@@ -72,7 +72,7 @@
         #{resumeSpecificwork,jdbcType=VARCHAR},
       </if>
       <if test="resumeWorks != null">
-        #{resumeWorks,jdbcType=INTEGER},
+        #{resumeWorks,jdbcType=VARCHAR},
       </if>
       <if test="resumeIntroduce != null">
         #{resumeIntroduce,jdbcType=VARCHAR},
@@ -96,7 +96,7 @@
         resume_specificwork = #{resumeSpecificwork,jdbcType=VARCHAR},
       </if>
       <if test="resumeWorks != null">
-        resume_works = #{resumeWorks,jdbcType=INTEGER},
+        resume_works = #{resumeWorks,jdbcType=VARCHAR},
       </if>
       <if test="resumeIntroduce != null">
         resume_introduce = #{resumeIntroduce,jdbcType=VARCHAR},
@@ -113,7 +113,7 @@
     set resume_workstatus = #{resumeWorkstatus,jdbcType=VARCHAR},
       resume_workdirection = #{resumeWorkdirection,jdbcType=VARCHAR},
       resume_specificwork = #{resumeSpecificwork,jdbcType=VARCHAR},
-      resume_works = #{resumeWorks,jdbcType=INTEGER},
+      resume_works = #{resumeWorks,jdbcType=VARCHAR},
       resume_introduce = #{resumeIntroduce,jdbcType=VARCHAR},
       resume_person = #{resumePerson,jdbcType=INTEGER}
     where resume_id = #{resumeId,jdbcType=INTEGER}

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * @Author JCX
- * @create 2020-01-07 10:18
+ * @create 2020-01-08 17:51
  */
 public class Project implements Serializable {
     private Integer projectId;
@@ -22,6 +22,10 @@ public class Project implements Serializable {
     private Integer projectPublisher;
 
     private Integer projectCoder;
+
+    private Integer projectStatus;
+
+    private String projectSkill;
 
     private static final long serialVersionUID = 1L;
 
@@ -89,6 +93,22 @@ public class Project implements Serializable {
         this.projectCoder = projectCoder;
     }
 
+    public Integer getProjectStatus() {
+        return projectStatus;
+    }
+
+    public void setProjectStatus(Integer projectStatus) {
+        this.projectStatus = projectStatus;
+    }
+
+    public String getProjectSkill() {
+        return projectSkill;
+    }
+
+    public void setProjectSkill(String projectSkill) {
+        this.projectSkill = projectSkill;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -103,6 +123,8 @@ public class Project implements Serializable {
         sb.append(", projectFile=").append(projectFile);
         sb.append(", projectPublisher=").append(projectPublisher);
         sb.append(", projectCoder=").append(projectCoder);
+        sb.append(", projectStatus=").append(projectStatus);
+        sb.append(", projectSkill=").append(projectSkill);
         sb.append("]");
         return sb.toString();
     }

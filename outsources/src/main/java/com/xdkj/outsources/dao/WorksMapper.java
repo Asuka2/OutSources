@@ -4,7 +4,7 @@ import com.xdkj.outsources.entity.Works;
 
 /**
  * @Author JCX
- * @create 2020-01-06 14:49
+ * @create 2020-01-08 14:37
  */
 public interface WorksMapper {
     int deleteByPrimaryKey(Integer worksId);

@@ -21,7 +21,16 @@ public interface ProjectService {
 
     int updateByPrimaryKey(Project record);
 
+    /**
+     * 通知项目发布者该项目被删除
+     *
+     * @param projectId
+     * @return
+     */
+    Boolean sendDeleteProjectMail(Integer projectId);
 }
+
+
 
 
 

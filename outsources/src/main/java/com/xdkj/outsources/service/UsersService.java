@@ -1,6 +1,8 @@
 package com.xdkj.outsources.service;
 
 import com.xdkj.outsources.entity.Users;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @Author JCX
@@ -20,6 +22,16 @@ public interface UsersService {
     int updateByPrimaryKeySelective(Users record);
 
     int updateByPrimaryKey(Users record);
+
+    Users selectAllByUserEmailAndUserPassword(String userEmail, String userPassword);
+
+    String verifyUserEmail(String userEmail);
+
+    String sendVerifyMail(String verifyMail);
+
+    int updateUserPasswordByUserEmail(String updatedUserPassword,String userEmail);
+
+    Boolean updateUserImg(MultipartFile imgFile,Integer userId);
 
 }
 

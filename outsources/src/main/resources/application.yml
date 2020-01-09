@@ -13,7 +13,39 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
+  #邮件配置
+  mail:
+    host: smtp.163.com
+    username: m15809273850@163.com
+    password: 19951228jcx
+    port: 25
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+    default-encoding: utf-8
+  freemarker:
+    content-type: text/html
+    #后缀名
+    suffix: .ftl
+    template-loader-path: classpath:/templates
+    charset: UTF-8
+    check-template-location: true
+  #上传文件的虚拟路径配置
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:D:\SpringBoot\outsources\src\main\resources\
+  mvc:
+    static-path-pattern: /**
+#设置一个邮件发送人
+lance:
+  mail:
+    sender: m15809273850@163.com
 mybatis:
   config-location: mybatis-config.xml
   mapper-locations: /mapper/**.xml
   type-aliases-package: com.xdkj.outsources.entity
+
+
