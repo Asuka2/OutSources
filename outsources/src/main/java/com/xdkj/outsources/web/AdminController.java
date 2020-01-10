@@ -1,7 +1,7 @@
 package com.xdkj.outsources.web;
 
+import com.xdkj.outsources.dto.Result;
 import com.xdkj.outsources.entity.Identification;
-import com.xdkj.outsources.entity.Users;
 import com.xdkj.outsources.service.IdentificationService;
 import com.xdkj.outsources.service.ProjectService;
 import com.xdkj.outsources.service.UsersService;
@@ -11,7 +11,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,10 +32,8 @@ public class AdminController {
             @ApiImplicitParam(paramType = "query",name = "userId",value = "用户ID",required = true,dataType = "int"),
     })
     @RequestMapping(value = "/usermanagement/deleteuserbyid",method = RequestMethod.POST)
-    public Map<String,Object> deleteUserById(@RequestParam("userId")Integer userId){
-        Map<String, Object> modelMap = new HashMap<>();
-        modelMap.put("success",usersService.deleteByPrimaryKey(userId));
-        return modelMap;
+    public Result<Integer> deleteUserById(@RequestParam("userId")Integer userId){
+        return new Result<>(usersService.deleteByPrimaryKey(userId),"1代表成功，0代表失败");
     }
 
     /**
@@ -49,10 +46,8 @@ public class AdminController {
             @ApiImplicitParam(paramType = "query",name = "projectId",value = "项目ID",required = true,dataType = "int"),
     })
     @RequestMapping(value = "/projectmanagement/deleteprojectbyid",method = RequestMethod.POST)
-    public Map<String,Object> deleteProjectById(@RequestParam("projectId")Integer projectId){
-        Map<String, Object> modelMap = new HashMap<>();
-        modelMap.put("success",projectService.sendDeleteProjectMail(projectId));
-        return modelMap;
+    public Result<Boolean> deleteProjectById(@RequestParam("projectId")Integer projectId){
+        return new Result<>(projectService.sendDeleteProjectMail(projectId),"1代表成功，0代表失败");
     }
 
     /**
@@ -66,14 +61,12 @@ public class AdminController {
             @ApiImplicitParam(paramType = "query",name = "identityStatus",value = "审核结果",required = true,dataType = "int"),
     })
     @RequestMapping(value = "/identificationmanagement/updateidentification",method = RequestMethod.POST)
-    public Map<String,Object> updateIdentification(@RequestParam("identityId")Integer identityId,
+    public Result<Integer> updateIdentification(@RequestParam("identityId")Integer identityId,
                                                    @RequestParam("identityStatus")Integer identityStatus){
-        Map<String, Object> modelMap = new HashMap<>();
         Identification identification = new Identification();
         identification.setIdentityId(identityId);
         identification.setIdentityStatus(identityStatus);
-        modelMap.put("success",identificationService.updateByPrimaryKeySelective(identification));
-        return modelMap;
+        return new Result<>(identificationService.updateByPrimaryKeySelective(identification),"1代表修改成功，0代表修改失败");
     }
 
 

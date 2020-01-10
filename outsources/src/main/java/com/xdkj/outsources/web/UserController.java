@@ -1,6 +1,9 @@
 package com.xdkj.outsources.web;
 
+import com.xdkj.outsources.dto.Result;
+import com.xdkj.outsources.entity.Huihua;
 import com.xdkj.outsources.entity.Users;
+import com.xdkj.outsources.service.HuihuaService;
 import com.xdkj.outsources.service.UsersService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -9,13 +12,10 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpSession;
-import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Author JCX
@@ -36,14 +36,12 @@ public class UserController {
      */
     @ApiOperation(value = "根据Email和Password登录",notes = "用户登录")
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public Map<String,Object> login(@RequestParam("userEmail")String userEmail,
-                                    @RequestParam("userPassword")String userPassword,
-                                    HttpSession session){
-        Map<String, Object> modelMap = new HashMap<>();
+    public Result<Users> login(@RequestParam("userEmail")String userEmail,
+                        @RequestParam("userPassword")String userPassword,
+                        HttpSession session){
         Users user = usersService.selectAllByUserEmailAndUserPassword(userEmail, userPassword);
         session.setAttribute("userId",user.getUserId());
-        modelMap.put("user",user);
-        return modelMap;
+        return new Result<>(user,"该用户基本信息");
     }
 
     /**
@@ -53,12 +51,10 @@ public class UserController {
      */
     @ApiOperation(value = "填写信息进行注册：JSON形式的用户信息",notes = "不包含userId字段,userImg字段为null")
     @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public Map<String,Object> register(@ApiParam(name="用户对象",value="不包含userId字段,userImg字段为null(返回值1为成功，0位失败)",required=true)
+    public Result<Integer> register(@ApiParam(name="用户对象",value="不包含userId字段,userImg字段为null(返回值1为成功，0位失败)",required=true)
                                                    Users user){
         System.out.println(user);
-        Map<String, Object> modelMap = new HashMap<>();
-        modelMap.put("success",usersService.insertSelective(user));
-        return modelMap;
+        return new Result<>(usersService.insertSelective(user),"1代表成，0代表失败");
     }
 
     /**
@@ -71,11 +67,8 @@ public class UserController {
             @ApiImplicitParam(paramType = "query",name = "userEmail",value = "Email",required = true,dataType = "String"),
 })
     @RequestMapping(value = "/verifymail",method = RequestMethod.POST)
-    public Map<String,Object> verifyMail(@RequestParam("userEmail")String userEmail){
-        Map<String, Object> modelMap = new HashMap<>();
-        String verifyString = usersService.verifyUserEmail(userEmail);
-        modelMap.put("verifyString",verifyString);
-        return modelMap;
+    public Result<String> verifyMail(@RequestParam("userEmail")String userEmail){
+        return new Result<String>(usersService.verifyUserEmail(userEmail),"验证码");
     }
 
     /**
@@ -88,11 +81,8 @@ public class UserController {
             @ApiImplicitParam(paramType = "query",name = "userEmail",value = "Email",required = true,dataType = "String"),
     })
     @RequestMapping(value = "/sendpasswordverifymail",method = RequestMethod.POST)
-    public Map<String,Object> sendVerifyMail(@RequestParam("userEmail")String userEmail){
-        Map<String, Object> modelMap = new HashMap<>();
-        String verifyString = usersService.sendVerifyMail(userEmail);
-        modelMap.put("verifyString",verifyString);
-        return modelMap;
+    public Result<String> sendVerifyMail(@RequestParam("userEmail")String userEmail){
+        return new Result<String>(usersService.sendVerifyMail(userEmail),"验证码");
     }
 
     /**
@@ -103,12 +93,10 @@ public class UserController {
      */
     @ApiOperation(value = "根据Email和Password修改密码",notes = "找回密码")
     @RequestMapping(value = "/updatepassword",method = RequestMethod.POST)
-    public Map<String,Object> updatePassword(@RequestParam("userEmail")String userEmail,
+    public Result<Integer> updatePassword(@RequestParam("userEmail")String userEmail,
                                              @RequestParam("userPassword")String userPassword){
-        Map<String, Object> modelMap = new HashMap<>();
         int i = usersService.updateUserPasswordByUserEmail(userPassword, userEmail);
-        modelMap.put("success",i);
-        return modelMap;
+        return new Result<>(i,"1代表成，0代表失败");
     }
 
     /**
@@ -120,14 +108,10 @@ public class UserController {
      */
     @ApiOperation(value = "根据userId修改用户头像",notes = "修改头像，返回值为1时修改成功，为0则修改失败")
     @RequestMapping(value = "/updateimg",method = RequestMethod.POST)
-    public Map<String,Object> updateImg(@RequestParam(value = "imgFile") MultipartFile imgFile,
+    public Result<Boolean> updateImg(@RequestParam(value = "imgFile") MultipartFile imgFile,
                                         HttpSession session){
-        String filename = imgFile.getOriginalFilename();
         Integer userId = (Integer)session.getAttribute("userId");
-        Map<String, Object> modelMap = new HashMap<>();
-        Boolean success = usersService.updateUserImg(imgFile, 1);
-        modelMap.put("success",success);
-        return modelMap;
+        return new Result<Boolean>(usersService.updateUserImg(imgFile, userId),"true代表成功，false代表失败");
     }
 
     /**
@@ -137,14 +121,56 @@ public class UserController {
      */
     @ApiOperation(value = "更改信息进行修改个人信息：JSON形式的用户信息",notes = "不包含userId字段、userImg字段、password字段")
     @RequestMapping(value = "/updateinformation",method = RequestMethod.POST)
-    public Map<String,Object> updateInformation(@ApiParam(name="用户对象",value="不包含userId字段、userImg字段、password字段(返回值1为成功，0位失败)",required=true)
+    public Result<Boolean> updateInformation(@ApiParam(name="用户对象",value="不包含userId字段、userImg字段、password字段(返回值1为成功，0位失败)",required=true)
                                                Users user){
         System.out.println(user);
-        Map<String, Object> modelMap = new HashMap<>();
-        modelMap.put("success",usersService.updateByPrimaryKeySelective(user));
-        return modelMap;
+        return new Result<>(usersService.updateByPrimaryKeySelective(user),"true代表成功，false代表失败");
     }
 
+    @Autowired
+    private HuihuaService huihuaService;
+
+    /**
+     * 查询聊天记录
+     * @param senderId 发送方ID
+     * @param receiverId 接收方ID
+     * @return 返回聊天记录列表
+     */
+    @ApiOperation(value = "查询会话",notes = "需要发送发ID，接收方ID，")
+    @RequestMapping(value = "/selecthuihua",method = RequestMethod.POST)
+    public Result<Map<String,Object>> selectChat(@RequestParam(value = "senderId")Integer senderId,
+                                          @RequestParam(value = "receiverId")Integer receiverId){
+        Map<String, Object> modelMap = new HashMap<>();
+        List<Huihua> chatRecord = huihuaService.selectAllByHuihuaFasongAndHuihuaJieshou(senderId, receiverId);
+        Users sender = usersService.selectByPrimaryKey(senderId);
+        Users receiver = usersService.selectByPrimaryKey(receiverId);
+        modelMap.put("chatRecord",chatRecord);
+        modelMap.put("sender",sender);
+        modelMap.put("receiver",receiver);
+        return new Result<>(modelMap,"chatRecord为聊天记录，sender为发送者，receiver为接受者");
+    }
+
+
+
+    /**
+     * 添加会话
+     * @param senderId 发送者ID
+     * @param receiverId 接受者ID
+     * @param chatContent 发送的内容
+     * @return 返回值为1代表成功，返回值为0代表失败
+     */
+    @ApiOperation(value = "发送会话",notes = "需要发送发ID，接收方ID，绘画内容")
+    @RequestMapping(value = "/inserthuihua",method = RequestMethod.POST)
+    public Result<Integer> insertChat(@RequestParam(value = "senderId")Integer senderId,
+                                         @RequestParam(value = "receiverId")Integer receiverId,
+                                         @RequestParam(value = "chatContent")String chatContent){
+        Huihua chat = new Huihua();
+        chat.setHuihuaFasong(senderId);
+        chat.setHuihuaJieshou(receiverId);
+        chat.setHuihuaText(chatContent);
+        chat.setHuihuaDate(new Date());
+        return new Result<>(huihuaService.insertSelective(chat),"1代表成功，0代表失败");
+    }
 
 
 }

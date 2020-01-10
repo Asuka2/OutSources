@@ -1,6 +1,5 @@
 package com.xdkj.outsources.dao;
 import org.apache.ibatis.annotations.Param;
-import java.util.List;
 
 import com.xdkj.outsources.entity.Users;
 

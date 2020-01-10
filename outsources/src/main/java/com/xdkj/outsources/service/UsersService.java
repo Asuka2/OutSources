@@ -1,8 +1,11 @@
 package com.xdkj.outsources.service;
 
+import com.xdkj.outsources.entity.Huihua;
 import com.xdkj.outsources.entity.Users;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * @Author JCX
@@ -32,6 +35,5 @@ public interface UsersService {
     int updateUserPasswordByUserEmail(String updatedUserPassword,String userEmail);
 
     Boolean updateUserImg(MultipartFile imgFile,Integer userId);
-
 }
 
